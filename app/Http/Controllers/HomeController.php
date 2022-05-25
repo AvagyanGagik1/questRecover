@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Helpers\UI\Table;
+use App\Models\DesiredPosition;
+use App\Models\User;
+use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class HomeController extends Controller
 {
@@ -19,10 +24,12 @@ class HomeController extends Controller
     /**
      * Show the application dashboard.
      *
-     * @return \Illuminate\Contracts\Support\Renderable
+     * @return Response
      */
-    public function index()
+    public function index(): Response
     {
-        return view('home');
+        $is = DesiredPosition::all();
+        $response = (new Table($is));
+        return response()->view('home', ['table' => $response]);
     }
 }

@@ -1,7 +1,5 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container-fluid">
-        <h1 class="text-black-50">You are logged in!</h1>
-    </div>
+   @include('admin.table.index',['title'=>'example','headers'=>['id','data','example'],'data'=>['id','data','example']])
 @endsection

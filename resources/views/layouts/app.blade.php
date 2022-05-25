@@ -10,6 +10,8 @@
           crossorigin="anonymous"/>
 
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+{{--    <script src="//cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>--}}
+    <script src="{{ mix('js/editor.js') }}" defer></script>
 
     @yield('third_party_stylesheets')
 
