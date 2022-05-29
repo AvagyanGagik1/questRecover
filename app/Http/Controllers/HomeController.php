@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Helpers\UI\Form\CreateUi;
 use App\Http\Helpers\UI\Table;
+use App\Models\About;
 use App\Models\DesiredPosition;
-use App\Models\User;
-use Illuminate\Contracts\Support\Renderable;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
 class HomeController extends Controller
@@ -28,8 +27,11 @@ class HomeController extends Controller
      */
     public function index(): Response
     {
+        dd(1);
+//        $create = new CreateUi(About::getModel());
+//        return response()->view('admin.crud.create', ['response' => $create->getResponse()]);
         $is = DesiredPosition::all();
         $response = (new Table($is));
-        return response()->view('home', ['table' => $response]);
+        return response()->view('admin.table',['table'=>$is]);
     }
 }

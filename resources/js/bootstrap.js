@@ -1,9 +1,10 @@
 window._ = require('lodash');
-// import ckeditor from 'ckeditor4/ckeditor'
-// ckeditor.replace('editor1')
-setTimeout(()=>{
-    CKEDITOR.replace('editor1')
-},2000)
+// require('ckeditor4/ckeditor')
+// // ckeditor.replace('editor1')
+// console.log(CKEDITOR)
+// setTimeout(()=>{
+//     CKEDITOR.replace('editor1')
+// },2000)
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
  * for JavaScript based Bootstrap features such as modals and tabs. This

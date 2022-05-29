@@ -13,6 +13,6 @@ class AdminController extends Controller
      */
     public function __invoke(): Response
     {
-        return response()->view('admin.index');
+        return response()->view('admin.dashboard');
     }
 }

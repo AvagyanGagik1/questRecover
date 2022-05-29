@@ -15,9 +15,10 @@ class CreateAdmissionsTable extends Migration
     {
         Schema::create('admissions', function (Blueprint $table) {
             $table->id();
-            $table->string('page_name');
-            $table->string('page_title');
-            $table->text('page_description');
+            $table->string('header');
+            $table->string('image');
+            $table->string('title');
+            $table->text('text');
             $table->string('form_title');
             $table->string('confidential_description');
             $table->timestamps();

@@ -11,8 +11,9 @@
 
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 {{--    <script src="//cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>--}}
-    <script src="{{ mix('js/editor.js') }}" defer></script>
-
+{{--    <script src="{{ mix('js/editor.js') }}" defer></script>--}}
+    <script src="{{ asset('ckeditor.js') }}"></script>
+{{--    <script src="https://cdn.ckeditor.com/4.17.1/standard/ckeditor.js"></script>--}}
     @yield('third_party_stylesheets')
 
     @stack('page_css')
@@ -84,6 +85,7 @@
 </div>
 
 <script src="{{ mix('js/app.js') }}" defer></script>
+
 
 @yield('third_party_scripts')
 

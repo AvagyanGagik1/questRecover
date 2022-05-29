@@ -2,10 +2,47 @@
 
 namespace App\Models;
 
+use App\Http\Helpers\UiInterface\UiAttributes;
+use App\Models\Helpers\UiConstants;
+use Eloquent;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
-class Blog extends Model
+/**
+ * App\Models\Blog
+ *
+ * @property int $id
+ * @property string $header
+ * @property string $title
+ * @property string $text
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @method static Builder|Blog newModelQuery()
+ * @method static Builder|Blog newQuery()
+ * @method static Builder|Blog query()
+ * @method static Builder|Blog whereCreatedAt($value)
+ * @method static Builder|Blog whereHeader($value)
+ * @method static Builder|Blog whereId($value)
+ * @method static Builder|Blog whereText($value)
+ * @method static Builder|Blog whereTitle($value)
+ * @method static Builder|Blog whereUpdatedAt($value)
+ * @mixin Eloquent
+ */
+class Blog extends Model implements UiAttributes
 {
     use HasFactory;
+
+    /**
+     * @return array
+     */
+    public function getUiAttributes(): array
+    {
+        return [
+            'header'=>UiConstants::INPUT,
+            'title'=>UiConstants::INPUT,
+            'text'=>UiConstants::EDITOR,
+        ];
+    }
 }

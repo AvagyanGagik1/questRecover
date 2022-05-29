@@ -177,6 +177,7 @@ return [
 
 //        custom providers
         Barryvdh\Debugbar\ServiceProvider::class,
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
 
     ],
 

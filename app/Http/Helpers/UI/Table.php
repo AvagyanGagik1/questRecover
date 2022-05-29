@@ -15,9 +15,11 @@ class Table
     public function __construct(Collection $collection)
     {
         $this->collection = $collection->toArray();
-        $this->setTitle($collection);
-        $this->setHeaders();
-        $this->setData();
+        if(!$collection->isEmpty()){
+            $this->setTitle($collection);
+            $this->setHeaders();
+            $this->setData();
+        }
     }
 
     private $collection;
