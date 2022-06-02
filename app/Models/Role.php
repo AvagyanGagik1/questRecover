@@ -30,6 +30,9 @@ use Illuminate\Support\Carbon;
 class Role extends Model implements UiAttributes
 {
     use HasFactory;
+
+    const ADMIN = 'admin';
+
     public function getUiAttributes(): array
     {
         // TODO: Implement getUiAttributes() method.

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Http\Helpers\UI\Form\CreateUi;
 use App\Http\Helpers\UiInterface\UiAttributes;
+use App\Models\Helpers\UiConstants;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
@@ -80,6 +81,22 @@ class User extends Authenticatable implements UiAttributes
     ];
     public function getUiAttributes(): array
     {
-        // TODO: Implement getUiAttributes() method.
+        return [
+            'id' => UiConstants::INPUT,
+            'name' => UiConstants::INPUT,
+            'email' => UiConstants::INPUT,
+            'email_verified_at' => UiConstants::INPUT,
+            'created_at' => UiConstants::INPUT,
+            'updated_at' => UiConstants::INPUT,
+        ];
+    }
+
+    public function role ()
+    {
+        return $this->hasOne(Role::class);
+    }
+
+    public function access(){
+        return $this->hasMany(UserAccess::class);
     }
 }
