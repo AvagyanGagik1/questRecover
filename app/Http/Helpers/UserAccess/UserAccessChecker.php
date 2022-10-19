@@ -15,6 +15,7 @@ class UserAccessChecker
 {
     protected $user;
     protected $access;
+
     public function __construct()
     {
         $this->user = Auth::user();
@@ -27,9 +28,27 @@ class UserAccessChecker
      */
     public function getUserAccess(Request $request): bool
     {
-        if ($this->user->role = Role::ADMIN) {
+        $routeName = $request->route()->getName();
+        if ($this->isAdmin()) {
             return true;
         }
-        return in_array($request->getRequestUrl(), $this->access);
+        return $this->getAccess($routeName);
+    }
+
+    /**
+     * @return bool
+     */
+    private function isAdmin(): bool
+    {
+        return in_array(Role::ADMIN, $this->user->roles);
+    }
+
+    /**
+     * @param $routeName
+     * @return bool
+     */
+    private function getAccess($routeName): bool
+    {
+        return in_array($routeName, $this->access);
     }
 }

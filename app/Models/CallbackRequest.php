@@ -27,6 +27,9 @@ class CallbackRequest extends Model implements UiAttributes
 {
     use HasFactory;
 
+    protected $fillable = [
+        'first_name', 'last_name', 'email', 'phone', 'comment'];
+
     public function getUiAttributes(): array
     {
         // TODO: Implement getUiAttributes() method.

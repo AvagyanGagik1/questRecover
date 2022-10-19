@@ -2,11 +2,11 @@
 
 namespace App\Models;
 
-use App\Http\Helpers\UI\Form\CreateUi;
-use App\Http\Helpers\UiInterface\UiAttributes;
+use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Support\Carbon;
 
 /**
@@ -14,8 +14,8 @@ use Illuminate\Support\Carbon;
  *
  * @property int $id
  * @property string $image
- * @property int $picturable_id
- * @property string $picturable_type
+ * @property int $pictureable_id
+ * @property string $pictureable_type
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @method static Builder|Pictures newModelQuery()
@@ -27,9 +27,19 @@ use Illuminate\Support\Carbon;
  * @method static Builder|Pictures wherePicturableId($value)
  * @method static Builder|Pictures wherePicturableType($value)
  * @method static Builder|Pictures whereUpdatedAt($value)
- * @mixin \Eloquent
+ * @mixin Eloquent
  */
 class Pictures extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['image', 'pictureable_id', 'pictureable_type'];
+
+    /**
+     * @return MorphTo
+     */
+    public function imageable(): MorphTo
+    {
+        return $this->morphTo();
+    }
 }

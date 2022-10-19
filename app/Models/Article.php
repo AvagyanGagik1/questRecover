@@ -3,11 +3,13 @@
 namespace App\Models;
 
 use App\Http\Helpers\UiInterface\UiAttributes;
+use App\Models\Helpers\GetModel;
 use App\Models\Helpers\UiConstants;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Carbon;
 
 /**
@@ -32,7 +34,13 @@ use Illuminate\Support\Carbon;
  */
 class Article extends Model implements UiAttributes
 {
-    use HasFactory;
+    use HasFactory, GetModel;
+
+    const TABLE_NAME = 'articles';
+
+
+    protected $fillable = ['image', 'title', 'header'];
+
 
     /**
      * @return array
@@ -42,7 +50,23 @@ class Article extends Model implements UiAttributes
         return [
             'image'=>UiConstants::FILE,
             'title'=>UiConstants::INPUT,
-            'text'=>UiConstants::EDITOR,
+            'header'=>UiConstants::INPUT,
         ];
+    }
+
+    /**
+     * @return string
+     */
+    public function slug(): string
+    {
+        return $this->id . '-' . str_replace(' ', '-', $this->title);
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function contents(): HasMany
+    {
+        return $this->hasMany(Content::class,'article_id','id');
     }
 }

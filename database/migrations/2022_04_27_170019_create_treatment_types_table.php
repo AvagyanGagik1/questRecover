@@ -18,7 +18,6 @@ class CreateTreatmentTypesTable extends Migration
             $table->string('name');
             $table->string('header');
             $table->string('image');
-            $table->string('image_parallax');
             $table->text('text');
             $table->timestamps();
         });

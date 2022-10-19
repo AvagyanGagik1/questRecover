@@ -26,11 +26,11 @@ use Illuminate\Support\Carbon;
  * @method static Builder|UserAccess whereUserId($value)
  * @mixin \Eloquent
  */
-class UserAccess extends Model implements UiAttributes
+class UserAccess extends Model
 {
     use HasFactory;
-    public function getUiAttributes(): array
-    {
-        // TODO: Implement getUiAttributes() method.
-    }
+
+    protected $table = 'user_accesses';
+
+    protected $fillable = [ 'route_name', 'name', 'is_access'];
 }

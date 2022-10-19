@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Http\Helpers\UI\Form\CreateUi;
 use App\Http\Helpers\UiInterface\UiAttributes;
+use App\Models\Helpers\GetModel;
 use App\Models\Helpers\UiConstants;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -30,7 +31,12 @@ use Illuminate\Support\Carbon;
  */
 class TreatmentDescription extends Model implements UiAttributes
 {
-    use HasFactory;
+    use HasFactory, GetModel;
+
+    const TABLE_NAME = 'treatment_descriptions';
+
+
+    protected $fillable = ['title', 'text'];
 
     public function getUiAttributes(): array
     {

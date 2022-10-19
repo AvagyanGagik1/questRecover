@@ -15,6 +15,9 @@ class CreateHomeDescriptionsTable extends Migration
     {
         Schema::create('home_descriptions', function (Blueprint $table) {
             $table->id();
+            $table->string('image');
+            $table->string('title');
+            $table->text('text');
             $table->timestamps();
         });
     }

@@ -9,6 +9,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\MorphToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Notifications\DatabaseNotificationCollection;
@@ -21,6 +22,8 @@ use Laravel\Sanctum\PersonalAccessToken;
  * App\Models\User
  *
  * @property int $id
+ * @property array $roles
+ * @property array $access
  * @property string $name
  * @property string $email
  * @property Carbon|null $email_verified_at
@@ -91,12 +94,19 @@ class User extends Authenticatable implements UiAttributes
         ];
     }
 
-    public function role ()
+    /**
+     * @return MorphToMany
+     */
+    public function roles (): MorphToMany
     {
-        return $this->hasOne(Role::class);
+        return $this->morphedByMany(Role::class,'userable');
     }
 
-    public function access(){
-        return $this->hasMany(UserAccess::class);
+    /**
+     * @return MorphToMany
+     */
+    public function access(): MorphToMany
+    {
+        return $this->morphedByMany(UserAccess::class,'userable');
     }
 }

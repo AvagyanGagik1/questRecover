@@ -22,8 +22,8 @@ class CreateBenefitsTable extends Migration
             $table->date('birthday');
             $table->string('insurance_provider');
             $table->string('member_id');
-            $table->enum('type_of_insurance',['PPO','POS','HMO/EPO']);
-            $table->string('insurance_phone_number');
+            $table->enum('type_of_insurance',['PPO','POS','HMO/EPO'])->nullable();
+            $table->string('insurance_phone_number')->nullable();
             $table->timestamps();
         });
     }

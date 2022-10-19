@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Http\Helpers\UiInterface\UiAttributes;
+use App\Models\Helpers\GetModel;
 use App\Models\Helpers\UiConstants;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
@@ -39,7 +40,12 @@ use Illuminate\Support\Carbon;
  */
 class Admissions extends Model implements UiAttributes
 {
-    use HasFactory;
+    use HasFactory, GetModel;
+
+    const TABLE_NAME = 'admissions';
+
+
+    protected $fillable = ['header', 'image', 'title', 'text','form_title','confidential_description'];
 
     /**
      * @return array

@@ -19,6 +19,7 @@ class Table
             $this->setTitle($collection);
             $this->setHeaders();
             $this->setData();
+            $this->setModel($collection);
         }
     }
 
@@ -26,6 +27,7 @@ class Table
     public $headers;
     public $data;
     public $title;
+    public $model;
 
     /**
      * @return void
@@ -53,5 +55,10 @@ class Table
     private function setTitle(Collection $collection): void
     {
         $this->title = StrHelper::replaceUnderscoreToSpace($collection[self::FIRST_ELEMENT]->getTable());
+    }
+
+    private function setModel(Collection $collection)
+    {
+        $this->model = get_class($collection[self::FIRST_ELEMENT]);
     }
 }

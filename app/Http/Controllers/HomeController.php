@@ -6,6 +6,7 @@ use App\Http\Helpers\UI\Form\CreateUi;
 use App\Http\Helpers\UI\Table;
 use App\Models\About;
 use App\Models\DesiredPosition;
+use App\Models\TreatmentType;
 use Illuminate\Http\Response;
 
 class HomeController extends Controller
@@ -27,11 +28,7 @@ class HomeController extends Controller
      */
     public function index(): Response
     {
-        dd(1);
-//        $create = new CreateUi(About::getModel());
-//        return response()->view('admin.crud.create', ['response' => $create->getResponse()]);
-        $is = DesiredPosition::all();
-        $response = (new Table($is));
-        return response()->view('admin.table',['table'=>$is]);
+        $treatment = TreatmentType::with('treatmentContent')->get();
+        dd(new Table($treatment));
     }
 }

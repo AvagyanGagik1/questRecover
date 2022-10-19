@@ -15,10 +15,9 @@ class CreateAboutDescriptionsTable extends Migration
     {
         Schema::create('about_descriptions', function (Blueprint $table) {
             $table->id();
-            $table->string('icon');
+            $table->string('image');
             $table->string('title');
             $table->text('description');
-            $table->text('team_block_description');
             $table->timestamps();
         });
     }

@@ -14,10 +14,9 @@ use Illuminate\Support\Carbon;
  * App\Models\AboutDescription
  *
  * @property int $id
- * @property string $icon
+ * @property string $image
  * @property string $title
  * @property string $description
- * @property string $team_block_description
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
  * @method static Builder|AboutDescription newModelQuery()
@@ -37,15 +36,23 @@ class AboutDescription extends Model implements UiAttributes
     use HasFactory;
 
     /**
+     * @var string[]
+     */
+    protected $fillable = [
+        'image',
+        'title',
+        'description',
+    ];
+
+    /**
      * @return array
      */
     public function getUiAttributes(): array
     {
         return [
-            'icon'=>UiConstants::FILE,
+            'image'=>UiConstants::FILE,
             'title'=>UiConstants::INPUT,
             'description'=>UiConstants::EDITOR,
-            'team_block_description'=>UiConstants::EDITOR,
         ];
     }
 }

@@ -1,4 +1,4 @@
 require('./bootstrap');
 require('admin-lte');
-
-CKEDITOR.replace( 'editor1' );
+require('slick-carousel')
+require('magnific-popup')

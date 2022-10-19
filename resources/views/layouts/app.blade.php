@@ -10,10 +10,10 @@
           crossorigin="anonymous"/>
 
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
-{{--    <script src="//cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>--}}
-{{--    <script src="{{ mix('js/editor.js') }}" defer></script>--}}
+    {{--    <script src="//cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>--}}
+    {{--    <script src="{{ mix('js/editor.js') }}" defer></script>--}}
     <script src="{{ asset('ckeditor.js') }}"></script>
-{{--    <script src="https://cdn.ckeditor.com/4.17.1/standard/ckeditor.js"></script>--}}
+    {{--    <script src="https://cdn.ckeditor.com/4.17.1/standard/ckeditor.js"></script>--}}
     @yield('third_party_stylesheets')
 
     @stack('page_css')
@@ -33,25 +33,25 @@
         <ul class="navbar-nav ml-auto">
             <li class="nav-item dropdown user-menu">
                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-                    <img src="https://infyom.com/images/logo/blue_logo_150x150.jpg"
+                    <img src="{{Auth::user()->avatar}}"
                          class="user-image img-circle elevation-2" alt="User Image">
-{{--                    <span class="d-none d-md-inline">{{ Auth::user()->name }}</span>--}}
+                    {{--                    <span class="d-none d-md-inline">{{ Auth::user()->name }}</span>--}}
                 </a>
                 <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                     <!-- User image -->
-                    <li class="user-header bg-primary">
-                        <img src="https://infyom.com/images/logo/blue_logo_150x150.jpg"
-                             class="img-circle elevation-2"
-                             alt="User Image">
-                        <p>
-{{--                            {{ Auth::user()->name }}--}}
-{{--                            <small>Member since {{ Auth::user()->created_at->format('M. Y') }}</small>--}}
-                        </p>
-                    </li>
+{{--                    <li class="user-header bg-primary">--}}
+{{--                        <img src="{{Auth::user()->avatar}}"--}}
+{{--                             class="img-circle elevation-2"--}}
+{{--                             alt="User Image">--}}
+{{--                        <p>--}}
+{{--                            --}}{{--                            {{ Auth::user()->name }}--}}
+{{--                            --}}{{--                            <small>Member since {{ Auth::user()->created_at->format('M. Y') }}</small>--}}
+{{--                        </p>--}}
+{{--                    </li>--}}
                     <!-- Menu Footer-->
                     <li class="user-footer">
-                        <a href="#" class="btn btn-default btn-flat">Profile</a>
-                        <a href="#" class="btn btn-default btn-flat float-right"
+{{--                        <a href="#" class="btn btn-default btn-flat">Profile</a>--}}
+                        <a href="#" class="btn btn-default btn-flat float-right w-100"
                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                             Sign out
                         </a>
@@ -90,5 +90,11 @@
 @yield('third_party_scripts')
 
 @stack('page_scripts')
+<script src="{{asset('js/admin/imageScale.js')}}" defer></script>
+<script src="{{asset('js/admin/imagePreview.js')}}" defer></script>
+<script src="{{asset('js/admin/delete.js')}}" defer></script>
+<script>
+    CKEDITOR.replace( 'editor1' );
+</script>
 </body>
 </html>

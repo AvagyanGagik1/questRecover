@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
-use App\Http\Helpers\UI\Form\CreateUi;
 use App\Http\Helpers\UiInterface\UiAttributes;
+use App\Models\Helpers\GetModel;
 use App\Models\Helpers\UiConstants;
+use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Carbon;
 
 /**
@@ -28,11 +30,17 @@ use Illuminate\Support\Carbon;
  * @method static Builder|TreatmentTypeContent whereText($value)
  * @method static Builder|TreatmentTypeContent whereTreatmentTypeId($value)
  * @method static Builder|TreatmentTypeContent whereUpdatedAt($value)
- * @mixin \Eloquent
+ * @mixin Eloquent
  */
 class TreatmentTypeContent extends Model implements UiAttributes
 {
-    use HasFactory;
+    use HasFactory, GetModel;
+
+    const TABLE_NAME = 'treatment_type_contents';
+
+
+    protected $fillable = ['treatment_type_id', 'text', 'block_name'];
+
     public function getUiAttributes(): array
     {
         return [
@@ -40,5 +48,17 @@ class TreatmentTypeContent extends Model implements UiAttributes
             'text'=>UiConstants::EDITOR,
             'block_name'=>UiConstants::INPUT,
         ];
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function treatmentContent(): BelongsTo
+    {
+        return $this->belongsTo(TreatmentType::class,'treatment_type_id','id');
+    }
+
+    public function getRelationName(){
+        return $this->treatmentContent()->first()->name;
     }
 }

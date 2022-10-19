@@ -4,12 +4,18 @@
     @include('admin.UI.header')
     <section class="content">
         <div class="container-fluid">
-            <form action="">
+            @if ($errors->any())
+                @foreach ($errors->all() as $error)
+                    <div class="alert alert-danger">{{$error}}</div>
+                @endforeach
+            @endif
+            <form action="{{route(strtok(Route::currentRouteName(), '.').'.store')}}" method="post" enctype="multipart/form-data">
+                @csrf
                 <div class="row">
                     <div class="col-6">
                         <div class="card-body">
                             @foreach($response as $res)
-                                @include($res->type,['id'=>$res->id,'label'=>$res->label,'placeholder'=>$res->placeholder,'name'=>$res->name,'multiple'=>$res->multiple])
+                                @include($res->type,['id'=>$res->id,'label'=>$res->label,'placeholder'=>$res->placeholder,'name'=>$res->name,'multiple'=>$res->multiple,'data'=>$res->data??[]])
                             @endforeach
                         </div>
 
@@ -18,6 +24,8 @@
                     </div>
                 </div>
             </form>
+                @include('admin.UI.modal.imageScale')
+
         </div>
     </section>
 @endsection

@@ -37,6 +37,11 @@ class About extends Model implements UiAttributes
 {
     use HasFactory, GetModel;
 
+    const TABLE_NAME = 'abouts';
+
+
+    protected $fillable = ['header', 'image', 'title', 'text'];
+
     /**
      * @return array
      */

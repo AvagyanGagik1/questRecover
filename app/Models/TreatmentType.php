@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
-use App\Http\Helpers\UI\Form\CreateUi;
 use App\Http\Helpers\UiInterface\UiAttributes;
+use App\Models\Helpers\GetModel;
 use App\Models\Helpers\UiConstants;
+use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Carbon;
 
 /**
@@ -17,7 +19,6 @@ use Illuminate\Support\Carbon;
  * @property string $name
  * @property string $header
  * @property string $image
- * @property string $image_parallax
  * @property string $text
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
@@ -32,19 +33,40 @@ use Illuminate\Support\Carbon;
  * @method static Builder|TreatmentType whereName($value)
  * @method static Builder|TreatmentType whereText($value)
  * @method static Builder|TreatmentType whereUpdatedAt($value)
- * @mixin \Eloquent
+ * @mixin Eloquent
  */
 class TreatmentType extends Model implements UiAttributes
 {
-    use HasFactory;
+    use HasFactory, GetModel;
+
+    const TABLE_NAME = 'treatment_types';
+
+
+    protected $fillable = ['header', 'image', 'name', 'text'];
+
     public function getUiAttributes(): array
     {
         return [
             'header' => UiConstants::INPUT,
             'image' => UiConstants::FILE,
-            'image_parallax' => UiConstants::FILE,
             'name' => UiConstants::INPUT,
             'text' => UiConstants::EDITOR
         ];
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function treatmentContent(): HasMany
+    {
+        return $this->hasMany(TreatmentTypeContent::class);
+    }
+
+    /**
+     * @return string
+     */
+    public function slug(): string
+    {
+        return $this->id . '-' . str_replace(' ', '-', $this->header);
     }
 }

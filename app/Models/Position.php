@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
-use App\Http\Helpers\UI\Form\CreateUi;
 use App\Http\Helpers\UiInterface\UiAttributes;
+use App\Models\Helpers\GetModel;
 use App\Models\Helpers\UiConstants;
+use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Carbon;
 
 /**
@@ -24,15 +26,32 @@ use Illuminate\Support\Carbon;
  * @method static Builder|Position whereId($value)
  * @method static Builder|Position whereName($value)
  * @method static Builder|Position whereUpdatedAt($value)
- * @mixin \Eloquent
+ * @mixin Eloquent
  */
 class Position extends Model implements UiAttributes
 {
-    use HasFactory;
+    use HasFactory, GetModel;
+
+    const TABLE_NAME = 'positions';
+
+
+    protected $fillable = ['name'];
+
+    /**
+     * @return array
+     */
     public function getUiAttributes(): array
     {
         return [
             'name'=>UiConstants::INPUT,
         ];
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function team(): HasMany
+    {
+        return $this->hasMany(Team::class);
     }
 }

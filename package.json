@@ -24,6 +24,8 @@
         "sass-loader": "^11.0.1"
     },
     "dependencies": {
-        "ckeditor4": "^4.19.0"
+        "ckeditor4": "^4.19.0",
+        "magnific-popup": "^1.1.0",
+        "slick-carousel": "^1.8.1"
     }
 }

@@ -13,35 +13,40 @@ class CreateUi
 {
     protected $attributes;
     protected $response;
+    protected $data;
+    protected $multiple;
 
-    public function __construct(UiAttributes $model)
+    public function __construct(UiAttributes $model, $data = [], $multiple = false)
     {
         $this->attributes = $model->getUiAttributes();
+        $this->data = $data;
+        $this->multiple = $multiple;
         $this->setUiResponseAttributes();
     }
 
     public function setUiResponseAttributes()
     {
-        foreach ($this->attributes as $key => $attribute){
-            $this->response[$key] = $this->setResponse($attribute,$key);
+        foreach ($this->attributes as $key => $attribute) {
+            $this->response[$key] = $this->setResponse($attribute, $key, $this->data);
         }
     }
 
-    private function setResponse($attribute,$key)
+    private function setResponse($attribute, $key, $data)
     {
         switch (true) {
             case ($attribute === UiConstants::INPUT);
-                return new Input($attribute,$key);
+                return new Input($attribute, $key);
             case ($attribute === UiConstants::FILE);
-                return new File($attribute,$key);
+                return new File($attribute, $key, $this->multiple);
             case ($attribute === UiConstants::SELECT);
-                return new Select($attribute,$key);
+                return new Select($attribute, $key, $data[$key]);
             case ($attribute === UiConstants::EDITOR);
-                return new Editor($attribute,$key);
+                return new Editor($attribute, $key);
         }
     }
 
-    public function getResponse(){
+    public function getResponse()
+    {
         return $this->response;
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Http\Helpers\UiInterface\UiAttributes;
+use App\Models\Helpers\GetModel;
 use App\Models\Helpers\UiConstants;
 use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
@@ -17,6 +18,9 @@ use Illuminate\Support\Carbon;
  * @property string $phone
  * @property string $address
  * @property string $email
+ * @property string $image
+ * @property string $header
+ * @property string $text
  * @property string|null $location
  * @property Carbon|null $created_at
  * @property Carbon|null $updated_at
@@ -34,7 +38,13 @@ use Illuminate\Support\Carbon;
  */
 class Contact extends Model implements UiAttributes
 {
-    use HasFactory;
+    use HasFactory, GetModel;
+
+    const TABLE_NAME = 'contacts';
+
+
+    protected $fillable = ['phone', 'address', 'email', 'header', 'location', 'text', 'image'];
+
 
     /**
      * @return array
@@ -42,9 +52,13 @@ class Contact extends Model implements UiAttributes
     public function getUiAttributes(): array
     {
         return [
-            'phone'=>UiConstants::INPUT,
-            'address'=>UiConstants::INPUT,
-            'email'=>UiConstants::INPUT,
+            'phone' => UiConstants::INPUT,
+            'address' => UiConstants::INPUT,
+            'email' => UiConstants::INPUT,
+            'header' => UiConstants::INPUT,
+            'location' => UiConstants::INPUT,
+            'text' => UiConstants::INPUT,
+            'image' => UiConstants::FILE,
         ];
     }
 }

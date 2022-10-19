@@ -15,9 +15,17 @@ class CreateUserAccessesTable extends Migration
     {
         Schema::create('user_accesses', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('user_id')->unsigned();
-            $table->tinyInteger('is_access');
+//            $table->bigInteger('user_id')->unsigned();
+            $table->string('route_name');
+            $table->string('name');
             $table->timestamps();
+
+
+//            $table->foreign('user_id')
+//                ->references('id')
+//                ->on('users')
+//                ->onUpdate('cascade')
+//                ->onDelete('cascade');
         });
     }
 

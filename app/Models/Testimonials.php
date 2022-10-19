@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Http\Helpers\UI\Form\CreateUi;
 use App\Http\Helpers\UiInterface\UiAttributes;
 use App\Models\Helpers\UiConstants;
+use Eloquent;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -15,6 +16,7 @@ use Illuminate\Support\Carbon;
  *
  * @property int $id
  * @property string $header
+ * @property string $title
  * @property string $image
  * @property string $text
  * @property Carbon|null $created_at
@@ -28,16 +30,30 @@ use Illuminate\Support\Carbon;
  * @method static Builder|Testimonials whereImage($value)
  * @method static Builder|Testimonials whereText($value)
  * @method static Builder|Testimonials whereUpdatedAt($value)
- * @mixin \Eloquent
+ * @mixin Eloquent
  */
 class Testimonials extends Model implements UiAttributes
 {
     use HasFactory;
 
+    /**
+     * @var string[]
+     */
+    protected $fillable = [
+        'header',
+        'image',
+        'text',
+        'title'
+    ];
+
+    /**
+     * @return array
+     */
     public function getUiAttributes(): array
     {
         return [
             'header' => UiConstants::INPUT,
+            'title' => UiConstants::INPUT,
             'image' => UiConstants::FILE,
             'text' => UiConstants::EDITOR
         ];

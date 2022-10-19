@@ -16,6 +16,10 @@ const mix = require('laravel-mix');
 
 
 mix.js('resources/js/app.js', 'public/js')
+    .js('resources/js/admin/UI/helpers/imageScale.js','public/js/admin')
+    .js('resources/js/admin/UI/helpers/imagePreview.js','public/js/admin')
+    .js('resources/js/admin/UI/helpers/delete.js','public/js/admin')
+    .js('resources/js/front/templateScript.js','public/js/front')
     .copyDirectory('resources/ckeditor','public')
     .sass('resources/sass/app.scss', 'public/css')
     .sourceMaps();

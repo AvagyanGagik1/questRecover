@@ -25,6 +25,10 @@
                             @foreach($table->headers as $header)
                                 <th class="text-capitalize">{{$header}}</th>
                             @endforeach
+                            @if(request()->route()->getName() !== 'admin.benefit' && request()->route()->getName() !== 'admin.callback')
+                                <th class="text-capitalize">update</th>
+                                <th class="text-capitalize">delete</th>
+                            @endif
                         </tr>
                         </thead>
                         <tbody>
@@ -34,10 +38,24 @@
                                 @foreach($value as $key => $item)
                                     @if($key === 'updated_at' || $key === 'created_at')
                                         <td>{{\Carbon\Carbon::parse($item)->format('d.m.Y')}}</td>
+                                    @elseif($key === 'text' || $key === 'content' || $key === 'description')
+                                        <td>{!!  $item!!}</td>
+                                    @elseif($key === 'image')
+                                        <td><img class="scale-images" src="{{$item}}" alt="{{$item}}" width="100"></td>
                                     @else
-                                        <td>{{$item}}</td>
+                                        <td>{{  $item}}</td>
                                     @endif
                                 @endforeach
+                                @if(request()->route()->getName() !== 'admin.benefit' && request()->route()->getName() !== 'admin.callback')
+                                    <td><a class="btn"
+                                           href="{{route(strtok(Route::currentRouteName(), '.').'.edit',$value['id'])}}"><i
+                                                style="color: dodgerblue" class="fas fa-edit"></i></a></td>
+                                    <td>
+                                        <button class="btn action-delete" data-title="{{$table->title}}"
+                                                data-action="{{route(strtok(Route::currentRouteName(), '.').'.destroy',$value['id'])}}">
+                                            <i style="color: red" class="fas fa-trash"></i></button>
+                                    </td>
+                                @endif
                             </tr>
                         @endforeach
 
@@ -46,6 +64,9 @@
                 </div>
 
             </div>
+
+            @include('admin.UI.modal.imageScale')
+            @include('admin.UI.modal.delete')
         @else
             @include('admin.table.noData')
         @endif

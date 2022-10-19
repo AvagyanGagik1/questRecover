@@ -1,0 +1,2 @@
+$(document).ready((function(){$(document).on("click",".scale-images",(function(){var c=$(this).attr("src");console.log(c),$("#imageScale").find("img").attr("src",c),$("#imageScale").modal("show")}))}));
+//# sourceMappingURL=imageScale.js.map

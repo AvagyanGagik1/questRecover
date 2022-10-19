@@ -43,4 +43,20 @@ use Illuminate\Support\Carbon;
 class Benefits extends Model
 {
     use HasFactory;
+
+    const TABLE_NAME = 'benefits';
+
+    protected $table = self::TABLE_NAME;
+
+    protected $fillable = [
+        'first_name',
+        'last_name',
+        'phone_number',
+        'email',
+        'birthday',
+        'insurance_provider',
+        'member_id',
+        'type_of_insurance',
+        'insurance_phone_number',
+    ];
 }

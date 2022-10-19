@@ -1,4 +1,17 @@
 {
     "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css"
+    "/js/admin/imageScale.js": "/js/admin/imageScale.js",
+    "/js/admin/imagePreview.js": "/js/admin/imagePreview.js",
+    "/js/admin/delete.js": "/js/admin/delete.js",
+    "/js/front/templateScript.js": "/js/front/templateScript.js",
+    "/css/app.css": "/css/app.css",
+    "/CHANGES.md": "/CHANGES.md",
+    "/LICENSE.md": "/LICENSE.md",
+    "/README.md": "/README.md",
+    "/SECURITY.md": "/SECURITY.md",
+    "/bender-runner.config.json": "/bender-runner.config.json",
+    "/ckeditor.js": "/ckeditor.js",
+    "/config.js": "/config.js",
+    "/contents.css": "/contents.css",
+    "/styles.js": "/styles.js"
 }

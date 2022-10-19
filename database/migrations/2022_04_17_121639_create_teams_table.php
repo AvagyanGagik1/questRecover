@@ -15,11 +15,23 @@ class CreateTeamsTable extends Migration
     {
         Schema::create('teams', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('category_id')->unsigned();
+            $table->bigInteger('team_type_id')->unsigned();
             $table->bigInteger('position_id')->unsigned();
             $table->string('name');
-            $table->string('avatar');
+            $table->string('image');
             $table->timestamps();
+
+            $table->foreign('team_type_id')
+                ->references('id')
+                ->on('team_types')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+
+            $table->foreign('position_id')
+                ->references('id')
+                ->on('positions')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
         });
     }
 

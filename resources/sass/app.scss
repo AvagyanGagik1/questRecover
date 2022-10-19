@@ -3,3 +3,14 @@
 
 // Bootstrap
 @import '~admin-lte/build/scss/adminlte';
+
+//custom
+
+@import 'admin/UI/UI';
+@import "mega-scss/style";
+@import "~slick-carousel/slick/slick";
+@import "~slick-carousel/slick/slick-theme";
+@import "~magnific-popup/src/css/main";
+html {
+    scroll-behavior: smooth;
+}

@@ -178,6 +178,7 @@ return [
 //        custom providers
         Barryvdh\Debugbar\ServiceProvider::class,
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
 
     ],
 
@@ -236,7 +237,7 @@ return [
 
 //        custom aliases
         'Debugbar' => Barryvdh\Debugbar\Facades\Debugbar::class,
-
+        'Image' => Intervention\Image\Facades\Image::class,
     ],
 
 ];

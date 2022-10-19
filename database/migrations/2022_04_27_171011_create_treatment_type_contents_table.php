@@ -17,7 +17,7 @@ class CreateTreatmentTypeContentsTable extends Migration
             $table->id();
             $table->bigInteger('treatment_type_id')->unsigned();
             $table->text('text');
-            $table->integer('block_name')->nullable();
+            $table->string('block_name');
             $table->timestamps();
 
             $table->foreign('treatment_type_id')
